@@ -31,4 +31,6 @@ module.exports = Object.freeze({
   RETURN_REJECTED: "Return_Rejected",
   RETURN_DELIVERED: "Return_Delivered",
   LIQUIDATED: "Liquidated",
+  RSP_RECEIVER:"receiver_recon",
+  RSP_ON_RECEIVER:"on_receiver_recon"
 });
