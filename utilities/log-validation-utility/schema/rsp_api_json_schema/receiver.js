@@ -6,18 +6,22 @@ module.exports = {
       properties: {
         domain: {
           type: "string",
+          const: "ONDC:NTS10",
         },
         country: {
           type: "string",
+          const: "IND",
         },
         city: {
           type: "string",
         },
         action: {
           type: "string",
+          const: "receiver_recon",
         },
         core_version: {
           type: "string",
+          const: "1.0.0",
         },
         bap_id: {
           type: "string",
@@ -39,9 +43,11 @@ module.exports = {
         },
         timestamp: {
           type: "string",
+          format: "date-time",
         },
         ttl: {
           type: "string",
+          const: "P2D",
         },
       },
       required: [
@@ -86,6 +92,7 @@ module.exports = {
                     },
                     state: {
                       type: "string",
+                      const: "Completed",
                     },
                     provider: {
                       type: "object",
@@ -125,6 +132,7 @@ module.exports = {
                             },
                             transaction_status: {
                               type: "string",
+                              const: "PAID",
                             },
                             amount: {
                               type: "string",
@@ -145,9 +153,11 @@ module.exports = {
                         },
                         status: {
                           type: "string",
+                          const: "PAID",
                         },
                         collected_by: {
                           type: "string",
+                          enum: ["BAP", "BPP"],
                         },
                         "@ondc/org/collected_by_status": {
                           type: "string",
@@ -190,6 +200,7 @@ module.exports = {
                               properties: {
                                 settlement_counterparty: {
                                   type: "string",
+                                  enum: ["buyer-app", "seller-app"],
                                 },
                                 settlement_phase: {
                                   type: "string",
@@ -223,12 +234,14 @@ module.exports = {
                                 },
                                 settlement_status: {
                                   type: "string",
+                                  const: "PAID",
                                 },
                                 settlement_reference: {
                                   type: "string",
                                 },
                                 settlement_timestamp: {
                                   type: "string",
+                                  format: "date-time",
                                 },
                               },
                               required: [
@@ -252,8 +265,6 @@ module.exports = {
                         },
                       },
                       required: [
-                        "uri",
-                        "tl_method",
                         "params",
                         "type",
                         "status",
@@ -352,6 +363,7 @@ module.exports = {
                     },
                     order_recon_status: {
                       type: "string",
+                      const: "01",
                     },
                     created_at: {
                       type: "string",

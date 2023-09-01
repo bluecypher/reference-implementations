@@ -151,9 +151,13 @@ const checkOnStatus = (msgIdSet, on_status, state) => {
       `Comparing billing object in ${constants.RET_CONFIRM} and /${constants.RET_ONSTATUS}_${state}`
     );
     const billing = dao.getValue("billing");
-    if (utils.isObjectEqual(billing, on_status.billing).length>0) {
-      const billingMismatch= utils.isObjectEqual(billing, on_status.billing);
-      onStatObj.bill = `${billingMismatch.join(", ")} mismatches in /billing in /${constants.RET_CONFIRM} and /${constants.RET_ONSTATUS}_${state}`;
+    if (utils.isObjectEqual(billing, on_status.billing).length > 0) {
+      const billingMismatch = utils.isObjectEqual(billing, on_status.billing);
+      onStatObj.bill = `${billingMismatch.join(
+        ", "
+      )} mismatches in /billing in /${constants.RET_CONFIRM} and /${
+        constants.RET_ONSTATUS
+      }_${state}`;
     }
     // dao.setValue("billing", on_confirm.billing);
   } catch (error) {

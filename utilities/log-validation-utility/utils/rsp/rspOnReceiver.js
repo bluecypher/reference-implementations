@@ -8,7 +8,9 @@ const validateSchema = require("../schemaValidation");
 const checkOnReceiver = (dirPath, msgIdSet) => {
   let onRcvrObj = {};
   try {
-    var onReceiver = fs.readFileSync(dirPath + `/${constants.RSP_ON_RECEIVER}.json`);
+    var onReceiver = fs.readFileSync(
+      dirPath + `/${constants.RSP_ON_RECEIVER}.json`
+    );
     onReceiver = JSON.parse(onReceiver);
 
     try {
@@ -25,16 +27,12 @@ const checkOnReceiver = (dirPath, msgIdSet) => {
       );
     }
 
-
-    dao.setValue("onRcvrObj", onRcvrObj);
+    return onRcvrObj;
   } catch (err) {
     if (err.code === "ENOENT") {
       console.log(`!!File not found for /receiver API!`);
     } else {
-      console.log(
-        `!!Some error occurred while checking /receiver API`,
-        err
-      );
+      console.log(`!!Some error occurred while checking /receiver API`, err);
     }
   }
 };

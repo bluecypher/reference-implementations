@@ -25,16 +25,12 @@ const checkReceiver = (dirPath, msgIdSet) => {
       );
     }
 
-
-    dao.setValue("rcvrObj", rcvrObj);
+    return rcvrObj;
   } catch (err) {
     if (err.code === "ENOENT") {
       console.log(`!!File not found for /receiver API!`);
     } else {
-      console.log(
-        `!!Some error occurred while checking /receiver API`,
-        err
-      );
+      console.log(`!!Some error occurred while checking /receiver API`, err);
     }
   }
 };

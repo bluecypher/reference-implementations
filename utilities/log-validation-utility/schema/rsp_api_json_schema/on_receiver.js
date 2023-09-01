@@ -6,18 +6,22 @@ module.exports = {
       properties: {
         domain: {
           type: "string",
+          const: "ONDC:NTS10",
         },
         country: {
           type: "string",
+          const: "IND",
         },
         city: {
           type: "string",
         },
         action: {
           type: "string",
+          const: "on_receiver_recon",
         },
         core_version: {
           type: "string",
+          const: "1.0.0",
         },
         bap_id: {
           type: "string",
@@ -39,9 +43,11 @@ module.exports = {
         },
         timestamp: {
           type: "string",
+          format: "date-time",
         },
         ttl: {
           type: "string",
+          const: "P2D",
         },
       },
       required: [
@@ -86,6 +92,7 @@ module.exports = {
                     },
                     order_recon_status: {
                       type: "string",
+                      const: "02",
                     },
                     transaction_id: {
                       type: "string",

@@ -6,7 +6,6 @@ const { getObjValues } = require("./utils");
 const checkReceiver = require("./Rsp/rspReceiver");
 const checkOnReceiver = require("./Rsp/rspOnReceiver");
 
-
 const validateLogs = (dirPath) => {
   // const dirPath = path.join(__dirname, "test_logs");
 
@@ -20,12 +19,10 @@ const validateLogs = (dirPath) => {
 
   let onRcvrResp = checkOnReceiver(dirPath, msgIdSet);
 
-  
   let logReport = "";
 
-  let rcvrObj = dao.getValue("rcvrObj");
-  let onRcvrObj = dao.getValue("onRcvrObj");
-
+  let rcvrObj = rcvrResp;
+  let onRcvrObj = onRcvrResp;
 
   try {
     console.log("Flushing DB Data");
