@@ -1,9 +1,9 @@
 const receiverSchema = require("./receiver.js");
 const onReceiverSchema = require("./on_receiver.js");
 
-
 const Ajv = require("ajv");
 const ajv = new Ajv({
+  $data: true,
   allErrors: true,
   strict: "log",
 });
@@ -54,9 +54,7 @@ const validate_schema_on_receiver_recon_rsp_for_json = (data) => {
   return formatted_error(error_list);
 };
 
-
 module.exports = {
   validate_schema_receiver_recon_rsp_for_json,
   validate_schema_on_receiver_recon_rsp_for_json,
-
 };

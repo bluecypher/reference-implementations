@@ -3,8 +3,8 @@ const _ = require("lodash");
 const dao = require("../dao/dao");
 // const path = require("path");
 const { getObjValues } = require("./utils");
-const checkReceiver = require("./Rsp/rspReceiver");
-const checkOnReceiver = require("./Rsp/rspOnReceiver");
+const checkReceiver = require("./rsp/rspReceiver");
+const checkOnReceiver = require("./rsp/rspOnReceiver");
 
 const validateLogs = (dirPath) => {
   // const dirPath = path.join(__dirname, "test_logs");
@@ -32,11 +32,11 @@ const validateLogs = (dirPath) => {
   }
 
   if (!_.isEmpty(rcvrObj)) {
-    logReport += `**/receiver**\n${getObjValues(rcvrObj)}\n`;
+    logReport += `**/receiver_recon**\n${getObjValues(rcvrObj)}\n`;
   }
 
   if (!_.isEmpty(onRcvrObj)) {
-    logReport += `**/on_receiver**\n${getObjValues(onRcvrObj)}\n`;
+    logReport += `**/on_receiver_recon**\n${getObjValues(onRcvrObj)}\n`;
   }
 
   fs.writeFileSync("log_report.md", logReport);

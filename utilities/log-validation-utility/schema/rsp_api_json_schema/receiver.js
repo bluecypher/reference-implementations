@@ -74,327 +74,330 @@ module.exports = {
           properties: {
             orders: {
               type: "array",
-              items: [
-                {
-                  type: "object",
-                  properties: {
-                    id: {
-                      type: "string",
-                    },
-                    invoice_no: {
-                      type: "string",
-                    },
-                    collector_app_id: {
-                      type: "string",
-                    },
-                    receiver_app_id: {
-                      type: "string",
-                    },
-                    state: {
-                      type: "string",
-                      const: "Completed",
-                    },
-                    provider: {
-                      type: "object",
-                      properties: {
-                        name: {
-                          type: "object",
-                          properties: {
-                            name: {
-                              type: "string",
-                            },
-                            code: {
-                              type: "string",
-                            },
+              items: {
+                type: "object",
+                properties: {
+                  id: {
+                    type: "string",
+                  },
+                  invoice_no: {
+                    type: "string",
+                  },
+                  collector_app_id: {
+                    type: "string",
+                  },
+                  receiver_app_id: {
+                    type: "string",
+                  },
+                  state: {
+                    type: "string",
+                    const: "Completed",
+                  },
+                  provider: {
+                    type: "object",
+                    properties: {
+                      name: {
+                        type: "object",
+                        properties: {
+                          name: {
+                            type: "string",
                           },
-                          required: ["name", "code"],
+                          code: {
+                            type: "string",
+                          },
                         },
-                        address: {
-                          type: "string",
-                        },
+                        required: ["name", "code"],
                       },
-                      required: ["name", "address"],
+                      address: {
+                        type: "string",
+                      },
                     },
-                    payment: {
-                      type: "object",
-                      properties: {
-                        uri: {
-                          type: "string",
+                    required: ["name", "address"],
+                  },
+                  payment: {
+                    type: "object",
+                    properties: {
+                      uri: {
+                        type: "string",
+                      },
+                      tl_method: {
+                        type: "string",
+                      },
+                      params: {
+                        type: "object",
+                        properties: {
+                          transaction_id: {
+                            type: "string",
+                          },
+                          transaction_status: {
+                            type: "string",
+                            const: "PAID",
+                          },
+                          amount: {
+                            type: "string",
+                          },
+                          currency: {
+                            type: "string",
+                          },
                         },
-                        tl_method: {
-                          type: "string",
-                        },
-                        params: {
+                        required: [
+                          "transaction_id",
+                          "transaction_status",
+                          "amount",
+                          "currency",
+                        ],
+                      },
+                      type: {
+                        type: "string",
+                      },
+                      status: {
+                        type: "string",
+                        const: "PAID",
+                      },
+                      collected_by: {
+                        type: "string",
+                        enum: ["BAP", "BPP"],
+                      },
+                      "@ondc/org/collected_by_status": {
+                        type: "string",
+                      },
+                      "@ondc/org/buyer_app_finder_fee_type": {
+                        type: "string",
+                      },
+                      "@ondc/org/buyer_app_finder_fee_amount": {
+                        type: "string",
+                      },
+                      "@ondc/org/withholding_amount": {
+                        type: "string",
+                      },
+                      "@ondc/org/withholding_amount_status": {
+                        type: "string",
+                      },
+                      "@ondc/org/return_window": {
+                        type: "string",
+                      },
+                      "@ondc/org/return_window_status": {
+                        type: "string",
+                      },
+                      "@ondc/org/settlement_basis": {
+                        type: "string",
+                      },
+                      "@ondc/org/settlement_basis_status": {
+                        type: "string",
+                      },
+                      "@ondc/org/settlement_window": {
+                        type: "string",
+                      },
+                      "@ondc/org/settlement_window_status": {
+                        type: "string",
+                      },
+                      "@ondc/org/settlement_details": {
+                        type: "array",
+                        items: {
                           type: "object",
                           properties: {
-                            transaction_id: {
+                            settlement_counterparty: {
+                              type: "string",
+                              enum: ["buyer-app", "seller-app"],
+                            },
+                            settlement_phase: {
                               type: "string",
                             },
-                            transaction_status: {
+                            settlement_amount: {
+                              type: "string",
+                            },
+                            settlement_type: {
+                              type: "string",
+                            },
+                            settlement_bank_account_no: {
+                              type: "string",
+                            },
+                            settlement_ifsc_code: {
+                              type: "string",
+                            },
+                            upi_address: {
+                              type: "string",
+                            },
+                            bank_name: {
+                              type: "string",
+                            },
+                            branch_name: {
+                              type: "string",
+                            },
+                            beneficiary_address: {
+                              type: "string",
+                            },
+                            beneficiary_name: {
+                              type: "string",
+                            },
+                            settlement_status: {
                               type: "string",
                               const: "PAID",
                             },
-                            amount: {
+                            settlement_reference: {
                               type: "string",
                             },
-                            currency: {
+                            settlement_timestamp: {
                               type: "string",
+                              format: "date-time",
                             },
                           },
                           required: [
-                            "transaction_id",
-                            "transaction_status",
-                            "amount",
-                            "currency",
-                          ],
-                        },
-                        type: {
-                          type: "string",
-                        },
-                        status: {
-                          type: "string",
-                          const: "PAID",
-                        },
-                        collected_by: {
-                          type: "string",
-                          enum: ["BAP", "BPP"],
-                        },
-                        "@ondc/org/collected_by_status": {
-                          type: "string",
-                        },
-                        "@ondc/org/buyer_app_finder_fee_type": {
-                          type: "string",
-                        },
-                        "@ondc/org/buyer_app_finder_fee_amount": {
-                          type: "string",
-                        },
-                        "@ondc/org/withholding_amount": {
-                          type: "string",
-                        },
-                        "@ondc/org/withholding_amount_status": {
-                          type: "string",
-                        },
-                        "@ondc/org/return_window": {
-                          type: "string",
-                        },
-                        "@ondc/org/return_window_status": {
-                          type: "string",
-                        },
-                        "@ondc/org/settlement_basis": {
-                          type: "string",
-                        },
-                        "@ondc/org/settlement_basis_status": {
-                          type: "string",
-                        },
-                        "@ondc/org/settlement_window": {
-                          type: "string",
-                        },
-                        "@ondc/org/settlement_window_status": {
-                          type: "string",
-                        },
-                        "@ondc/org/settlement_details": {
-                          type: "array",
-                          items: [
-                            {
-                              type: "object",
-                              properties: {
-                                settlement_counterparty: {
-                                  type: "string",
-                                  enum: ["buyer-app", "seller-app"],
-                                },
-                                settlement_phase: {
-                                  type: "string",
-                                },
-                                settlement_amount: {
-                                  type: "integer",
-                                },
-                                settlement_type: {
-                                  type: "string",
-                                },
-                                settlement_bank_account_no: {
-                                  type: "string",
-                                },
-                                settlement_ifsc_code: {
-                                  type: "string",
-                                },
-                                upi_address: {
-                                  type: "string",
-                                },
-                                bank_name: {
-                                  type: "string",
-                                },
-                                branch_name: {
-                                  type: "string",
-                                },
-                                beneficiary_address: {
-                                  type: "string",
-                                },
-                                beneficiary_name: {
-                                  type: "string",
-                                },
-                                settlement_status: {
-                                  type: "string",
-                                  const: "PAID",
-                                },
-                                settlement_reference: {
-                                  type: "string",
-                                },
-                                settlement_timestamp: {
-                                  type: "string",
-                                  format: "date-time",
-                                },
-                              },
-                              required: [
-                                "settlement_counterparty",
-                                "settlement_phase",
-                                "settlement_amount",
-                                "settlement_type",
-                                "settlement_bank_account_no",
-                                "settlement_ifsc_code",
-                                "upi_address",
-                                "bank_name",
-                                "branch_name",
-                                "beneficiary_address",
-                                "beneficiary_name",
-                                "settlement_status",
-                                "settlement_reference",
-                                "settlement_timestamp",
-                              ],
-                            },
+                            "settlement_counterparty",
+                            "settlement_phase",
+                            "settlement_amount",
+                            "settlement_type",
+                            "settlement_bank_account_no",
+                            "settlement_ifsc_code",
+                            "upi_address",
+                            "bank_name",
+                            "branch_name",
+                            "beneficiary_address",
+                            "beneficiary_name",
+                            "settlement_status",
+                            "settlement_reference",
+                            "settlement_timestamp",
                           ],
                         },
                       },
-                      required: [
-                        "params",
-                        "type",
-                        "status",
-                        "collected_by",
-                        "@ondc/org/collected_by_status",
-                        "@ondc/org/buyer_app_finder_fee_type",
-                        "@ondc/org/buyer_app_finder_fee_amount",
-                        "@ondc/org/withholding_amount",
-                        "@ondc/org/withholding_amount_status",
-                        "@ondc/org/return_window",
-                        "@ondc/org/return_window_status",
-                        "@ondc/org/settlement_basis",
-                        "@ondc/org/settlement_basis_status",
-                        "@ondc/org/settlement_window",
-                        "@ondc/org/settlement_window_status",
-                        "@ondc/org/settlement_details",
-                      ],
                     },
-                    withholding_tax_gst: {
-                      type: "object",
-                      properties: {
-                        currency: {
-                          type: "string",
-                        },
-                        value: {
-                          type: "string",
-                        },
-                      },
-                      required: ["currency", "value"],
-                    },
-                    withholding_tax_tds: {
-                      type: "object",
-                      properties: {
-                        currency: {
-                          type: "string",
-                        },
-                        value: {
-                          type: "string",
-                        },
-                      },
-                      required: ["currency", "value"],
-                    },
-                    deduction_by_collector: {
-                      type: "object",
-                      properties: {
-                        currency: {
-                          type: "string",
-                        },
-                        value: {
-                          type: "string",
-                        },
-                      },
-                      required: ["currency", "value"],
-                    },
-                    payerdetails: {
-                      type: "object",
-                      properties: {
-                        payer_name: {
-                          type: "string",
-                        },
-                        payer_address: {
-                          type: "string",
-                        },
-                        payer_account_no: {
-                          type: "integer",
-                        },
-                        payer_bank_code: {
-                          type: "string",
-                        },
-                        payer_virtual_payment_address: {
-                          type: "string",
-                        },
-                      },
-                      required: [
-                        "payer_name",
-                        "payer_address",
-                        "payer_account_no",
-                        "payer_bank_code",
-                        "payer_virtual_payment_address",
-                      ],
-                    },
-                    settlement_reason_code: {
-                      type: "string",
-                    },
-                    transaction_id: {
-                      type: "string",
-                    },
-                    settlement_id: {
-                      type: "string",
-                    },
-                    settlement_reference_no: {
-                      type: "string",
-                    },
-                    recon_status: {
-                      type: "string",
-                    },
-                    order_recon_status: {
-                      type: "string",
-                      const: "01",
-                    },
-                    created_at: {
-                      type: "string",
-                    },
-                    updated_at: {
-                      type: "string",
-                    },
+                    required: [
+                      "params",
+                      "type",
+                      "status",
+                      "collected_by",
+                      "@ondc/org/collected_by_status",
+                      "@ondc/org/buyer_app_finder_fee_type",
+                      "@ondc/org/buyer_app_finder_fee_amount",
+                      "@ondc/org/withholding_amount",
+                      "@ondc/org/withholding_amount_status",
+                      "@ondc/org/return_window",
+                      "@ondc/org/return_window_status",
+                      "@ondc/org/settlement_basis",
+                      "@ondc/org/settlement_basis_status",
+                      "@ondc/org/settlement_window",
+                      "@ondc/org/settlement_window_status",
+                      "@ondc/org/settlement_details",
+                    ],
                   },
-                  required: [
-                    "id",
-                    "invoice_no",
-                    "collector_app_id",
-                    "receiver_app_id",
-                    "state",
-                    "provider",
-                    "payment",
-                    "withholding_tax_gst",
-                    "withholding_tax_tds",
-                    "deduction_by_collector",
-                    "payerdetails",
-                    "settlement_reason_code",
-                    "transaction_id",
-                    "settlement_id",
-                    "settlement_reference_no",
-                    "recon_status",
-                    "order_recon_status",
-                    "created_at",
-                    "updated_at",
-                  ],
+                  withholding_tax_gst: {
+                    type: "object",
+                    properties: {
+                      currency: {
+                        type: "string",
+                      },
+                      value: {
+                        type: "string",
+                      },
+                    },
+                    required: ["currency", "value"],
+                  },
+                  withholding_tax_tds: {
+                    type: "object",
+                    properties: {
+                      currency: {
+                        type: "string",
+                      },
+                      value: {
+                        type: "string",
+                      },
+                    },
+                    required: ["currency", "value"],
+                  },
+                  deduction_by_collector: {
+                    type: "object",
+                    properties: {
+                      currency: {
+                        type: "string",
+                      },
+                      value: {
+                        type: "string",
+                      },
+                    },
+                    required: ["currency", "value"],
+                  },
+                  payerdetails: {
+                    type: "object",
+                    properties: {
+                      payer_name: {
+                        type: "string",
+                      },
+                      payer_address: {
+                        type: "string",
+                      },
+                      payer_account_no: {
+                        type: "string",
+                      },
+                      payer_bank_code: {
+                        type: "string",
+                      },
+                      payer_virtual_payment_address: {
+                        type: "string",
+                      },
+                    },
+                    required: [
+                      "payer_name",
+                      "payer_address",
+                      "payer_account_no",
+                      "payer_bank_code",
+                      "payer_virtual_payment_address",
+                    ],
+                  },
+                  settlement_reason_code: {
+                    type: "string",
+                    const: "01",
+                  },
+                  transaction_id: {
+                    type: "string",
+                  },
+                  settlement_id: {
+                    type: "string",
+                  },
+                  settlement_reference_no: {
+                    type: "string",
+                    const: {
+                      $data:
+                        "1/payment/@ondc~1org~1settlement_details/0/settlement_reference",
+                    },
+                    errorMessage:
+                      "${1/payment/@ondc~1org~1settlement_details/0/settlement_reference}",
+                  },
+                  recon_status: {
+                    type: "string",
+                  },
+                  order_recon_status: {
+                    type: "string",
+                    const: "01",
+                  },
+                  created_at: {
+                    type: "string",
+                  },
+                  updated_at: {
+                    type: "string",
+                  },
                 },
-              ],
+                required: [
+                  "id",
+                  "invoice_no",
+                  "collector_app_id",
+                  "receiver_app_id",
+                  "state",
+                  "provider",
+                  "payment",
+                  "withholding_tax_gst",
+                  "withholding_tax_tds",
+                  "deduction_by_collector",
+                  "payerdetails",
+                  "settlement_reason_code",
+                  "transaction_id",
+                  "settlement_id",
+                  "settlement_reference_no",
+                  "recon_status",
+                  "order_recon_status",
+                  "created_at",
+                  "updated_at",
+                ],
+              },
             },
           },
           required: ["orders"],
